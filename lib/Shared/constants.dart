@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/Layout/GameLayout/desktop_game.dart';
 import 'package:tic_tac_toe/Layout/GameLayout/mobile_game.dart';
-import 'package:tic_tac_toe/Layout/GameLayout/tablet_game.dart';
 import 'package:tic_tac_toe/Responsive/responsive.dart';
 
 const backgroundColor = Colors.black;

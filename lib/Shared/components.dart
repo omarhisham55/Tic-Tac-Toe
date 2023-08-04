@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Layout/GameLayout/Bloc/game_manager.dart';
 
+// ignore: must_be_immutable
 class HeaderScore extends StatefulWidget {
   final BuildContext context;
   final GameManager manager;
