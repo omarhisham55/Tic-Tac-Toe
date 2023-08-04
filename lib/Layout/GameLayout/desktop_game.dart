@@ -50,7 +50,7 @@ class DesktopGame extends StatelessWidget {
                     child: gameTable(context: context, manager: manager)),
                 const SizedBox(width: 20.0),
                 Expanded(
-                  child: headerScore(
+                  child: HeaderScore(
                     context: context,
                     manager: manager,
                     firstColor: firstColor,

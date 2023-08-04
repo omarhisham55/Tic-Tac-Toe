@@ -11,59 +11,60 @@ class MobileGame extends StatelessWidget {
   MobileGame({super.key, required this.firstPlayer});
 
   late final String secondPlayer = firstPlayer == "X" ? "O" : "X";
+
   late final Color firstColor = firstPlayer == "X" ? xColor : oColor;
+
   late final Color secondColor = firstPlayer == "X" ? oColor : xColor;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GameManager(),
-      child: BlocConsumer<GameManager, GameStates>(
-          listener: (context, state) {
-            if(state is EndGameState){
-              GameManager.get(context).isGameFinished(context, state.gameResult, firstPlayer);
-            }
-          },
-          builder: (context, state) {
-            GameManager manager = GameManager.get(context);
-            return Scaffold(
-              appBar: AppBar(
-                leading: Container(),
-                actions: [
-                  TextButton(
-                    onPressed: () => popBack(context),
-                    child: const Text(
-                      'Back to menu',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-              body: Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Column(
-                  children: [
-                    headerScore(
-                      context: context,
-                      manager: manager,
-                      firstColor: firstColor,
-                      secondColor: secondColor,
-                      firstPlayer: firstPlayer,
-                      secondPlayer: secondPlayer,
-                    ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          gameTable(context: context, manager: manager),
-                        ],
-                      ),
-                    ),
-                  ],
+      child: BlocConsumer<GameManager, GameStates>(listener: (context, state) {
+        if (state is EndGameState) {
+          GameManager.get(context)
+              .isGameFinished(context, state.gameResult, firstPlayer);
+        }
+      }, builder: (context, state) {
+        GameManager manager = GameManager.get(context);
+        return Scaffold(
+          appBar: AppBar(
+            leading: Container(),
+            actions: [
+              TextButton(
+                onPressed: () => popBack(context),
+                child: const Text(
+                  'Back to menu',
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
-            );
-          }),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Column(
+              children: [
+                HeaderScore(
+                  context: context,
+                  manager: manager,
+                  firstColor: firstColor,
+                  secondColor: secondColor,
+                  firstPlayer: firstPlayer,
+                  secondPlayer: secondPlayer,
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      gameTable(context: context, manager: manager),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }),
     );
   }
 
